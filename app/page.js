@@ -1,4 +1,5 @@
 import Openseadragon from './Openseadragon'
+import ObjectButtons from './ObjectButtons.js';
 
 export default function Home() {
 
@@ -21,7 +22,8 @@ return (
               {/* <Openseadragon idPrefix={'openseadragon2'} iiifImageId={'https://free.iiifhosting.com/iiif/2eb326b21ef6910d3796061f13fa843c44c0977934c8f9b8d126574b6777b9a6'}/> */}
               <Openseadragon artworkId='27992' idPrefix='openseadragon2'/>
             </div>
-          </div>        
+          </div>  
+          <ObjectButtons />      
         </div>
     );
 }
