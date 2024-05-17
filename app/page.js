@@ -1,7 +1,13 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Openseadragon from './Openseadragon'
 import ObjectButtons from './ObjectButtons.js';
+import getObjectAndImages from './getObjectAndImages.js';
 
 export default function Home() {
+  const [data, setData] = useState(getObjectAndImages());
+  console.log(data);
 
 return (
         <div className="container mt-10 mx-auto mb-10 p-4 bg-iiif-purple">
@@ -14,14 +20,16 @@ return (
           </p>
 
           <div className="flex gap-16">
-            <div className="w-1/2 p-8">
-              {/* <Openseadragon idPrefix={'openseadragon1'} iiifImageId={'https://free.iiifhosting.com/iiif/2eb326b21ef6910d3796061f13fa843c44c0977934c8f9b8d126574b6777b9a6'}/> */}
-              <Openseadragon artworkId='94126' idPrefix='openseadragon1'/>
-            </div>
-            <div className="w-1/2 p-8">
-              {/* <Openseadragon idPrefix={'openseadragon2'} iiifImageId={'https://free.iiifhosting.com/iiif/2eb326b21ef6910d3796061f13fa843c44c0977934c8f9b8d126574b6777b9a6'}/> */}
-              <Openseadragon artworkId='27992' idPrefix='openseadragon2'/>
-            </div>
+            {data && (
+              <>
+                <div className="w-1/2 p-8">
+                  <Openseadragon artworkId={data.imageId1} idPrefix='openseadragon1' />
+                </div>
+                <div className="w-1/2 p-8">
+                  <Openseadragon artworkId={data.imageId2} idPrefix='openseadragon2' />
+                </div>
+              </>
+            )}
           </div>  
           <ObjectButtons />      
         </div>

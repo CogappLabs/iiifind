@@ -24,22 +24,3 @@ const ObjectButtons = () => {
 };
 
 export default ObjectButtons;
-
-// export default function ObjectButtons() {
-//     const handleClick = (event) => {
-//         console.log(event.target.value);
-//     }
-
-//     return (
-//         <form>
-//             <button type="button" value="Monkey" onClick={handleClick}>Monkey</button>
-//             <button type="button" value="Dog" onClick={handleClick}>Dog</button>
-//             <button type="button" value="Boat" onClick={handleClick}>Boat</button>
-//             <button type="button" value="Umbrella" onClick={handleClick}>Umbrella</button>
-//             <button type="button" value="Fruit" onClick={handleClick}>Fruit</button>
-//             <button type="button" value="Clock" onClick={handleClick}>Clock</button>
-//             <button type="button" value="Snake" onClick={handleClick}>Snake</button>
-//             <button type="button" value="Elephant" onClick={handleClick}>Elephant</button>
-//         </form>
-//     );
-// }
