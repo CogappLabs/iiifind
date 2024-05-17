@@ -16,7 +16,6 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
             if (e.key >= '1' && e.key <= '9') {
                 if (e.code.startsWith('Digit')) {
                     const button = document.getElementById(`button${e.key}`);
-                    console.log(button);
     
                     let currentCorrect = score.correct;
                     let currentIncorrect = score.incorrect;
@@ -27,8 +26,6 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
                     } else {
                         setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
                     }
-    
-                    console.log(score);
             
                     // Todo: This isn't working properly 
                     setDisabled(true);
@@ -39,7 +36,6 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
                     });
                 } else if (e.code.startsWith('Numpad')) {
                     const button = document.getElementById(`button${e.key}`);
-                    console.log(button);
     
                     let currentCorrect = scorePlayerTwo.correct;
                     let currentIncorrect = scorePlayerTwo.incorrect;
@@ -50,8 +46,6 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
                     } else {
                         setScorePlayerTwo({correct: currentCorrect, incorrect: currentIncorrect + 1});
                     }
-    
-                    console.log(score);
             
                     // Todo: This isn't working properly 
                     setDisabled(true);
