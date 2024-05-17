@@ -1,6 +1,6 @@
 const ScoreTracker = ({score}) => {
     return (
-        <div className="text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
+        <div>
             <h2 className="mb-4 text-xl font-bold">Score</h2>
             <div className="flex gap-2">
                 <div>
