@@ -8,7 +8,7 @@ import ScoreTracker from './ScoreTracker.js';
 
 export default function Home() {
   const [data, setData] = useState(getObjectAndImages());
-  console.log(data);
+  const [score, setScore] = useState({"correct": 0, "incorrect": 0});
 
 return (
         <div className="container mt-10 mx-auto mb-10 p-4 bg-iiif-purple">
@@ -32,8 +32,8 @@ return (
               </>
             )}
           </div>  
-          <ObjectButtons answer={data.object}/>      
-          <ScoreTracker  />
+          <ObjectButtons answer={data.object} score={score} setScore={setScore}/>      
+          <ScoreTracker  score={score}/>
         </div>
     );
 }

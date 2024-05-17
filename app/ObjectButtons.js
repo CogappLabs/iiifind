@@ -2,14 +2,19 @@
 
 import React from 'react';
 
-const ObjectButtons = ({ answer }) => {
+const ObjectButtons = ({ answer, score, setScore }) => {
     const handleClick = (e) => {
         e.preventDefault();
 
+        let currentCorrect = score.correct;
+        let currentIncorrect = score.incorrect;
+
         if (e.target.value === answer) {
             console.log('correct');
+            setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
         } else {
             console.log('incorrect');
+            setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
         }
 
         
