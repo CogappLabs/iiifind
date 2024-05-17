@@ -58,7 +58,7 @@ return (
             </div>
           </div>  
           {data && (
-            <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} />  
+            <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} timeLeft={timeLeft}/>  
           )}
           <div className="flex justify-between text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
             <ScoreTracker  score={score} scorePlayerTwo={scorePlayerTwo} />

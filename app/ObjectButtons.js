@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import getObjectAndImages from './getObjectAndImages.js';
 
-const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayerTwo, setData, disabled, setDisabled }) => {
+const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayerTwo, setData, disabled, setDisabled, timeLeft }) => {
     const answerRef = useRef(answer);
 
     useEffect(() => {
@@ -21,39 +21,47 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
                     let currentIncorrect = score.incorrect;
                     let currentAnswer = answerRef.current;
     
-                    if (button.value === currentAnswer) {
-                        setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
-                    } else {
-                        setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
+                    if (timeLeft > 0) {
+                        if (button.value === currentAnswer) {
+                            setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
+                        } else {
+                            setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
+                        }
+                
+                        // Todo: This isn't working properly 
+                        setDisabled(true);
+
+                        
+                        getObjectAndImages().then(newData => {
+                            setData(newData);
+                            setDisabled(false);
+                        });
                     }
-            
-                    // Todo: This isn't working properly 
-                    setDisabled(true);
-            
-                    getObjectAndImages().then(newData => {
-                        setData(newData);
-                        setDisabled(false);
-                    });
+        
                 } else if (e.code.startsWith('Numpad')) {
                     const button = document.getElementById(`button${e.key}`);
     
                     let currentCorrect = scorePlayerTwo.correct;
                     let currentIncorrect = scorePlayerTwo.incorrect;
                     let currentAnswer = answerRef.current;
-    
-                    if (button.value === currentAnswer) {
-                        setScorePlayerTwo({correct: currentCorrect + 1, incorrect: currentIncorrect});
-                    } else {
-                        setScorePlayerTwo({correct: currentCorrect, incorrect: currentIncorrect + 1});
+
+
+                    if (timeLeft > 0) {
+                        if (button.value === currentAnswer) {
+                            setScorePlayerTwo({correct: currentCorrect + 1, incorrect: currentIncorrect});
+                        } else {
+                            setScorePlayerTwo({correct: currentCorrect, incorrect: currentIncorrect + 1});
+                        }
+                
+                        // Todo: This isn't working properly 
+                        setDisabled(true);
+                
+                        
+                        getObjectAndImages().then(newData => {
+                            setData(newData);
+                            setDisabled(false);
+                        });
                     }
-            
-                    // Todo: This isn't working properly 
-                    setDisabled(true);
-            
-                    getObjectAndImages().then(newData => {
-                        setData(newData);
-                        setDisabled(false);
-                    });
                 }
     
             }
@@ -75,19 +83,22 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
         let currentCorrect = score.correct;
         let currentIncorrect = score.incorrect;
 
-        if (e.target.value === answer) {
-            setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
-        } else {
-            setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
+        if (timeLeft > 0) {
+            if (e.target.value === answer) {
+                setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
+            } else {
+                setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
+            }
+
+            // Todo: This isn't working properly 
+            setDisabled(true);
+
+            
+            getObjectAndImages().then(newData => {
+                setData(newData);
+                setDisabled(false);
+            });
         }
-
-        // Todo: This isn't working properly 
-        setDisabled(true);
-
-        getObjectAndImages().then(newData => {
-            setData(newData);
-            setDisabled(false);
-        });
     };
 
     return (
