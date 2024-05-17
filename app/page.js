@@ -7,8 +7,15 @@ import getObjectAndImages from './getObjectAndImages.js';
 import ScoreTracker from './ScoreTracker.js';
 
 export default function Home() {
-  const [data, setData] = useState(getObjectAndImages());
+  const [data, setData] = useState(null);
   const [score, setScore] = useState({"correct": 0, "incorrect": 0});
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    getObjectAndImages().then(newData => {
+      setData(newData);
+    });
+  }, []);
 
 return (
         <div className="container mt-10 mx-auto mb-10 p-4 bg-iiif-purple">
@@ -32,7 +39,9 @@ return (
               </>
             )}
           </div>  
-          <ObjectButtons answer={data.object} score={score} setScore={setScore}/>      
+          {data && (
+            <ObjectButtons answer={data.object} score={score} setScore={setScore} setData={setData} disabled={disabled} setDisabled={setDisabled} />  
+          )}    
           <ScoreTracker  score={score}/>
         </div>
     );

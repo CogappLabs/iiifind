@@ -15,7 +15,9 @@ module.exports = {
       colors: {
         'iiif-purple': '#9879B0',
         'iiif-yellow': '#FFE21B'
-      }
+      },
+      backgroundColor: ['disabled'],
+      textColor: ['disabled'],
     },
   },
   plugins: [],
