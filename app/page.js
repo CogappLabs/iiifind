@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Openseadragon from './Openseadragon'
 import ObjectButtons from './ObjectButtons.js';
 import getObjectAndImages from './getObjectAndImages.js';
+import ScoreTracker from './ScoreTracker.js';
 
 export default function Home() {
   const [data, setData] = useState(getObjectAndImages());
@@ -31,7 +32,8 @@ return (
               </>
             )}
           </div>  
-          <ObjectButtons />      
+          <ObjectButtons answer={data.object}/>      
+          <ScoreTracker  />
         </div>
     );
 }

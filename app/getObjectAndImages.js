@@ -18,12 +18,16 @@ export default function getObjectAndImages() {
 
     // Select two random image IDs from the chosen object array
     const images = dibbleObjects[randomDibbleObject];
-    const randomImage1 = images[Math.floor(Math.random() * images.length)];
-    let randomImage2;
+    let randomImage1, randomImage2, otherImages;
 
     do {
-        randomImage2 = images[Math.floor(Math.random() * images.length)];
-    } while (randomImage1 === randomImage2);
+      randomImage1 = images[Math.floor(Math.random() * images.length)];
+      randomImage2 = images[Math.floor(Math.random() * images.length)];
+  
+      // Check if the two image IDs are in another dibbleObject array
+      const otherObjects = dibbleObjectNames.filter(name => name !== randomDibbleObject);
+      otherImages = otherObjects.flatMap(name => dibbleObjects[name]);
+    } while (randomImage1 === randomImage2 || otherImages.includes(randomImage1) || otherImages.includes(randomImage2));
 
     console.log(randomDibbleObject, randomImage1, randomImage2);
 

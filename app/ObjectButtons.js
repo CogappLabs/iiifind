@@ -2,15 +2,21 @@
 
 import React from 'react';
 
-const ObjectButtons = () => {
+const ObjectButtons = ({ answer }) => {
     const handleClick = (e) => {
         e.preventDefault();
 
-        console.log(e.target.value);
+        if (e.target.value === answer) {
+            console.log('correct');
+        } else {
+            console.log('incorrect');
+        }
+
+        
     };
 
     return (
-        <form className="flex flex-wrap gap-2 justify-center">
+        <form className="flex flex-wrap gap-2 justify-center mb-4">
             <button type="button" value="Monkey" onClick={handleClick} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow">Monkey</button>
             <button type="button" value="Dog" onClick={handleClick} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow">Dog</button>
             <button type="button" value="Boat" onClick={handleClick} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow">Boat</button>
