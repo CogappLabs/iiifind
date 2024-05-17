@@ -20,7 +20,7 @@ export default function Home() {
     setDisabled(false);
     setStartDisabled(true);
     setStart(true);
-    setTimeLeft(1 * 10);
+    setTimeLeft(1 * 60);
     setScore({"correct": 0, "incorrect": 0});
 
     getObjectAndImages().then(newData => {
