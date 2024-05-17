@@ -18,6 +18,9 @@ module.exports = {
       },
       backgroundColor: ['disabled'],
       textColor: ['disabled'],
+      minHeight: {
+        '500': '500px',
+      }
     },
   },
   plugins: [],

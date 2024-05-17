@@ -70,7 +70,7 @@ export function OpenSeadragonViewer({artworkId, idPrefix}) {
     return (
         <div 
             id={idPrefix} style={{ width: "100%", height: "600px" }}
-            className="w-full h-screen border-4 border-iiif-yellow bg-white"
+            className="w-full h-full"
         ></div>
     );
 }
