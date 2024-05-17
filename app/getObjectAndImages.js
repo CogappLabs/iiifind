@@ -34,7 +34,6 @@ export default function getObjectAndImages() {
             });
           } while (randomImage1 === randomImage2 || isPairInOtherArray);
     
-        console.log(randomDibbleObject, randomImage1, randomImage2);
         resolve({
             object: randomDibbleObject,
             imageId1: randomImage1,

@@ -10,6 +10,7 @@ import CountdownTimer from './CountdownTimer.js';
 export default function Home() {
   const [data, setData] = useState(null);
   const [score, setScore] = useState({"correct": 0, "incorrect": 0});
+  const [scorePlayerTwo, setScorePlayerTwo] = useState({"correct": 0, "incorrect": 0});
   const [disabled, setDisabled] = useState(true);
   const [start, setStart] = useState(false);
   const [startDisabled, setStartDisabled] = useState(false);
@@ -57,10 +58,10 @@ return (
             </div>
           </div>  
           {data && (
-            <ObjectButtons answer={data.object} score={score} setScore={setScore} setData={setData} disabled={disabled} setDisabled={setDisabled} />  
+            <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} />  
           )}
           <div className="flex justify-between text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
-            <ScoreTracker  score={score}/>
+            <ScoreTracker  score={score} scorePlayerTwo={scorePlayerTwo} />
             <CountdownTimer  start={start} setStart={setStart} setStartText={setStartText} setDisabled={setDisabled} setStartDisabled={setStartDisabled} timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
           </div>    
 

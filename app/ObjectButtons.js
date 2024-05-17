@@ -1,25 +1,79 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import getObjectAndImages from './getObjectAndImages.js';
 
-const ObjectButtons = ({ answer, score, setScore, setData, disabled, setDisabled }) => {
+const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayerTwo, setData, disabled, setDisabled }) => {
+    const answerRef = useRef(answer);
+
     useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key >= '1' && event.key <= '9') {
-            const button = document.getElementById(`button${event.key}`);
-                if (button) button.click();
+        answerRef.current = answer;
+      }, [answer]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key >= '1' && e.key <= '9') {
+                if (e.code.startsWith('Digit')) {
+                    const button = document.getElementById(`button${e.key}`);
+                    console.log(button);
+    
+                    let currentCorrect = score.correct;
+                    let currentIncorrect = score.incorrect;
+                    let currentAnswer = answerRef.current;
+    
+                    if (button.value === currentAnswer) {
+                        setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
+                    } else {
+                        setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
+                    }
+    
+                    console.log(score);
+            
+                    // Todo: This isn't working properly 
+                    setDisabled(true);
+            
+                    getObjectAndImages().then(newData => {
+                        setData(newData);
+                        setDisabled(false);
+                    });
+                } else if (e.code.startsWith('Numpad')) {
+                    const button = document.getElementById(`button${e.key}`);
+                    console.log(button);
+    
+                    let currentCorrect = scorePlayerTwo.correct;
+                    let currentIncorrect = scorePlayerTwo.incorrect;
+                    let currentAnswer = answerRef.current;
+    
+                    if (button.value === currentAnswer) {
+                        setScorePlayerTwo({correct: currentCorrect + 1, incorrect: currentIncorrect});
+                    } else {
+                        setScorePlayerTwo({correct: currentCorrect, incorrect: currentIncorrect + 1});
+                    }
+    
+                    console.log(score);
+            
+                    // Todo: This isn't working properly 
+                    setDisabled(true);
+            
+                    getObjectAndImages().then(newData => {
+                        setData(newData);
+                        setDisabled(false);
+                    });
+                }
+    
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
-
+        
         // Remove event listener on cleanup
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [score, setScore, answerRef, disabled, setDisabled, setData]);
+
+
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -28,10 +82,8 @@ const ObjectButtons = ({ answer, score, setScore, setData, disabled, setDisabled
         let currentIncorrect = score.incorrect;
 
         if (e.target.value === answer) {
-            console.log('correct');
             setScore({correct: currentCorrect + 1, incorrect: currentIncorrect});
         } else {
-            console.log('incorrect');
             setScore({correct: currentCorrect, incorrect: currentIncorrect + 1});
         }
 
