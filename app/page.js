@@ -13,11 +13,15 @@ export default function Home() {
   const [disabled, setDisabled] = useState(true);
   const [start, setStart] = useState(false);
   const [startDisabled, setStartDisabled] = useState(false);
+  const [startText, setStartText] = useState('Start');
+  const [timeLeft, setTimeLeft] = useState(1 * 60);
 
   const handleStart = () => {
     setDisabled(false);
-    setStart(true);
     setStartDisabled(true);
+    setStart(true);
+    setTimeLeft(1 * 10);
+    setScore({"correct": 0, "incorrect": 0});
 
     getObjectAndImages().then(newData => {
       setData(newData);
@@ -34,7 +38,7 @@ return (
               Can you find the common object in these two images? Use the buttons below. 
           </p>
 
-          <button onClick={handleStart} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow disabled:bg-gray-500 disabled:text-white" disabled={startDisabled}>Start</button>
+          <button onClick={handleStart} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow disabled:bg-gray-500 disabled:text-white" disabled={startDisabled}>{ startText }</button>
 
           <div className="flex gap-16">
             <div className="w-1/2 p-8">
@@ -57,7 +61,7 @@ return (
           )}
           <div className="flex justify-between text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
             <ScoreTracker  score={score}/>
-            <CountdownTimer  start={start} setDisabled={setDisabled}/>
+            <CountdownTimer  start={start} setStart={setStart} setStartText={setStartText} setDisabled={setDisabled} setStartDisabled={setStartDisabled} timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
           </div>    
 
         </div>

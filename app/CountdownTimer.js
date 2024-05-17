@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-function CountdownTimer({ start, setDisabled }) {
-  const [timeLeft, setTimeLeft] = useState(1 * 60);
-
+function CountdownTimer({ timeLeft, setTimeLeft, start, setDisabled, setStartDisabled, setStartText }) {
   useEffect(() => {
     if (!start) return;
 
     // exit early when we reach 0
     if (!timeLeft) {
       setDisabled(true);
+      setStartDisabled(false);
+      setStartText('Restart');
       return;
     }
 
@@ -22,7 +22,7 @@ function CountdownTimer({ start, setDisabled }) {
     return () => clearInterval(intervalId);
     // add timeLeft as a dependency to re-run the effect
     // when we update it
-  }, [start, timeLeft, setDisabled]);
+  }, [start, timeLeft, setDisabled, setStartDisabled, setStartText]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
