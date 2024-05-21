@@ -9,7 +9,7 @@ const ScoreTracker = ({score, scorePlayerTwo}) => {
                         <div>{score.correct}</div>
                     </div>
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">Incorrect Answers</h3>
+                        <h3 className="mb-4 text-lg font-bold">Wrong Answers</h3>
                         <div>{score.incorrect}</div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@ const ScoreTracker = ({score, scorePlayerTwo}) => {
                         <div>{scorePlayerTwo.correct}</div>
                     </div>
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">Incorrect Answers</h3>
+                        <h3 className="mb-4 text-lg font-bold">Wrong Answers</h3>
                         <div>{scorePlayerTwo.incorrect}</div>
                     </div>
                 </div>
