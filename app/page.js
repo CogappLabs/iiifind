@@ -51,20 +51,20 @@ return (
             <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} timeLeft={timeLeft}/>  
           )}
 
-          <div className="flex justify-between text-black border-4 border-iiif-yellow bg-white p-4">
+          <div className="flex justify-between gap-16 text-black border-4 border-iiif-yellow bg-white p-4 mb-8">
             <ScoreTracker  score={score} scorePlayerTwo={scorePlayerTwo} />
             <CountdownTimer  start={start} setStart={setStart} setStartText={setStartText} setDisabled={setDisabled} setStartDisabled={setStartDisabled} timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
           </div> 
 
-          <div className="flex gap-16">
-            <div className="w-1/2 p-8">
+          <div className="flex gap-4">
+            <div className="w-1/2">
               <div className="w-full min-h-500 border-4 border-iiif-yellow bg-white">
                 {data && (
                   <Openseadragon artworkId={data.imageId1} idPrefix='openseadragon1' />
                 )}
               </div>
             </div>
-            <div className="w-1/2 p-8">
+            <div className="w-1/2">
               <div className="w-full min-h-500 border-4 border-iiif-yellow bg-white">
                 {data && (
                   <Openseadragon artworkId={data.imageId2} idPrefix='openseadragon2' />
