@@ -31,15 +31,30 @@ export default function Home() {
 
 return (
         <div className="container mt-10 mx-auto mb-10 p-4 bg-iiif-purple">
-          <h1 className="mb-4 text-2xl font-bold text-iiif-yellow">DIIIble (IIIF Dobble)</h1>
+          <h1 className="mb-4 text-2xl font-bold text-iiif-yellow">IIIFind</h1>
           <p className="mb-2 text-iiif-yellow">
               <span className="font-bold">
-              How to use:&nbsp;
+                How to play:&nbsp;
               </span> 
-              Can you find the common object in these two images? Use the buttons below. 
+              Can you find the common object in the two images? How many can you find in one minute? Press 'Start' to start the game.  
+          </p>
+          <p className="mb-2 text-iiif-yellow">
+            <span className="font-bold">
+              Note:&nbsp;
+            </span>
+            For a two player version use a keyboard with a number pad. Player 1 uses the numbers 1-9, and Player 2 uses the number pad.
           </p>
 
-          <button onClick={handleStart} className="bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow disabled:bg-gray-500 disabled:text-white" disabled={startDisabled}>{ startText }</button>
+          <button onClick={handleStart} className="mb-4 bg-iiif-yellow hover:bg-iiif-purple text-iiif-purple hover:text-iiif-yellow font-bold py-2 px-4 rounded border border-transparent hover:border-iiif-yellow disabled:bg-gray-500 disabled:text-white" disabled={startDisabled}>{ startText }</button>
+
+          {data && (
+            <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} timeLeft={timeLeft}/>  
+          )}
+
+          <div className="flex justify-between text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
+            <ScoreTracker  score={score} scorePlayerTwo={scorePlayerTwo} />
+            <CountdownTimer  start={start} setStart={setStart} setStartText={setStartText} setDisabled={setDisabled} setStartDisabled={setStartDisabled} timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
+          </div> 
 
           <div className="flex gap-16">
             <div className="w-1/2 p-8">
@@ -56,15 +71,7 @@ return (
                 )}
               </div>
             </div>
-          </div>  
-          {data && (
-            <ObjectButtons answer={data.object} score={score} setScore={setScore} scorePlayerTwo={scorePlayerTwo} setScorePlayerTwo={setScorePlayerTwo} setData={setData} disabled={disabled} setDisabled={setDisabled} timeLeft={timeLeft}/>  
-          )}
-          <div className="flex justify-between text-iiif-purple border-4 border-iiif-yellow bg-white p-4">
-            <ScoreTracker  score={score} scorePlayerTwo={scorePlayerTwo} />
-            <CountdownTimer  start={start} setStart={setStart} setStartText={setStartText} setDisabled={setDisabled} setStartDisabled={setStartDisabled} timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
-          </div>    
-
+          </div>     
         </div>
     );
 }
