@@ -25,14 +25,14 @@ export default function getObjectAndImages() {
         do {
             randomImage1 = images[Math.floor(Math.random() * images.length)];
             randomImage2 = images[Math.floor(Math.random() * images.length)];
-          
+
             // Check if the two image IDs are in another dibbleObject array together
             const otherObjects = dibbleObjectNames.filter(name => name !== randomDibbleObject);
             isPairInOtherArray = otherObjects.some(name => {
-              const otherImages = dibbleObjects[name];
-              return otherImages.includes(randomImage1) && otherImages.includes(randomImage2);
+                const otherImages = dibbleObjects[name];
+                return otherImages.includes(randomImage1) && otherImages.includes(randomImage2);
             });
-          } while (randomImage1 === randomImage2 || isPairInOtherArray);
+        } while (randomImage1 === randomImage2 || isPairInOtherArray);
     
         resolve({
             object: randomDibbleObject,
