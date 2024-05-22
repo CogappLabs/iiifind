@@ -36,7 +36,7 @@ return (
               <span className="font-bold">
                 How to play:&nbsp;
               </span> 
-              Can you find the common object in the two images? How many can you find in one minute? Press 'Start' to start the game.  
+              Can you find the common object in the two images? How many can you find in one minute? Press &apos;Start&apos; to start the game.  
           </p>
           <p className="mb-2 text-black">
             <span className="font-bold">

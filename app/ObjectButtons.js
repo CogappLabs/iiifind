@@ -73,7 +73,7 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [score, setScore, answerRef, disabled, setDisabled, setData]);
+    }, [score, scorePlayerTwo.correct, scorePlayerTwo.incorrect, setScore, setScorePlayerTwo, timeLeft, answerRef, disabled, setDisabled, setData]);
 
 
 
