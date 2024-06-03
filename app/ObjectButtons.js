@@ -6,6 +6,11 @@ import getObjectAndImages from './getObjectAndImages.js';
 
 const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayerTwo, setData, disabled, setDisabled, timeLeft }) => {
     const answerRef = useRef(answer);
+    const buttonRefs = useRef([]);
+    if (buttonRefs.current.length !== 8) {
+      buttonRefs.current = Array(8).fill(null).map((_, i) => buttonRefs.current[i] ?? React.createRef());
+    }
+    const buttonLabels = ['Monkey', 'Dog', 'Boat', 'Umbrella', 'Fruit', 'Clock', 'Snake', 'Elephant'];
 
     useEffect(() => {
         answerRef.current = answer;
@@ -15,7 +20,8 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
         const handleKeyDown = (e) => {
             if (e.key >= '1' && e.key <= '9') {
                 if (e.code.startsWith('Digit')) {
-                    const button = document.getElementById(`button${e.key}`);
+                    const buttonIndex = parseInt(e.key, 10) - 1;
+                    const button = buttonRefs.current[buttonIndex].current;
     
                     let currentCorrect = score.correct;
                     let currentIncorrect = score.incorrect;
@@ -39,7 +45,8 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
                     }
         
                 } else if (e.code.startsWith('Numpad')) {
-                    const button = document.getElementById(`button${e.key}`);
+                    const buttonIndex = parseInt(e.key, 10) - 1;
+                    const button = buttonRefs.current[buttonIndex].current;
     
                     let currentCorrect = scorePlayerTwo.correct;
                     let currentIncorrect = scorePlayerTwo.incorrect;
@@ -103,14 +110,18 @@ const ObjectButtons = ({ answer, score, setScore, scorePlayerTwo, setScorePlayer
 
     return (
         <form className="flex flex-wrap gap-2 justify-center mb-4">
-            <button id="button1" type="button" value="Monkey" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Monkey</button>
-            <button id="button2" type="button" value="Dog" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Dog</button>
-            <button id="button3" type="button" value="Boat" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Boat</button>
-            <button id="button4" type="button" value="Umbrella" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Umbrella</button>
-            <button id="button5" type="button" value="Fruit" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Fruit</button>
-            <button id="button6" type="button" value="Clock" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Clock</button>
-            <button id="button7" type="button" value="Snake" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Snake</button>
-            <button id="button8" type="button" value="Elephant" onClick={handleClick} className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" disabled={disabled}>Elephant</button>
+            {buttonRefs.current.map((ref, index) => (
+                <button ref={ref} 
+                        id={`button${index + 1}`} 
+                        key={index}
+                        type="button" 
+                        value={buttonLabels[index]} 
+                        onClick={handleClick} 
+                        className="bg-iiif-yellow hover:bg-black text-black hover:text-iiif-yellow font-bold py-2 px-4 rounded disabled:bg-gray-500 disabled:text-white" 
+                        disabled={disabled}>
+                    {buttonLabels[index]}
+                </button>
+            ))} 
         </form>
     );
 };
