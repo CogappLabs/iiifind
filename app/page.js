@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import Openseadragon from './Openseadragon'
 import ObjectButtons from './ObjectButtons.js';
