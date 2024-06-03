@@ -1,11 +1,17 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
-import Openseadragon from './Openseadragon'
+// import Openseadragon from './Openseadragon'
 import ObjectButtons from './ObjectButtons.js';
 import getObjectAndImages from './getObjectAndImages.js';
 import ScoreTracker from './ScoreTracker.js';
 import CountdownTimer from './CountdownTimer.js';
+
+const Openseadragon = dynamic(
+  () =>
+    import('./OpenSeadragonViewer.js')
+)
 
 export default function Home() {
   const [data, setData] = useState(null);
