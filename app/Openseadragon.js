@@ -1,3 +1,5 @@
+'use client';
+
 import OpenSeadragon from 'openseadragon'
 import React, { useEffect, useRef } from 'react'
 

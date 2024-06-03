@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 
 function CountdownTimer({ timeLeft, setTimeLeft, start, setDisabled, setStartDisabled, setStartText }) {
   useEffect(() => {
